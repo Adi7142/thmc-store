@@ -1,47 +1,46 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-50 border-b border-black/40 bg-[#1f1b1b]/95 backdrop-blur">
+<nav x-data="{ open: false }" class="sticky top-0 z-50 mc-panel border-x-0 border-t-0 rounded-none">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20">
-            <div class="flex items-center gap-10">
-                <a href="{{ route('store.index') }}" class="flex items-center gap-3">
-                    <img src="{{ asset('images/thmc-logo-128.webp') }}" alt="THMC" class="h-12 w-12 rounded-xl shadow-sm">
-                    <div class="leading-tight">
-                        <div class="font-extrabold tracking-tight text-white">THMC</div>
-                        <div class="text-xs text-white/60 -mt-0.5">Minecraft Store</div>
+        <div class="flex justify-between h-20 items-center gap-6">
+            <div class="flex items-center gap-4 min-w-0">
+                <a href="{{ route('store.index') }}" class="flex items-center gap-3 min-w-0">
+                    <img src="{{ asset('images/thmc-logo-128.webp') }}" alt="THMC" class="h-12 w-12 pixelated">
+                    <div class="leading-tight min-w-0">
+                        <div class="font-bold tracking-tight text-white truncate">THMC</div>
+                        <div class="text-xs text-white/75 -mt-0.5 truncate">Minecraft Store</div>
                     </div>
                 </a>
 
-                <div class="hidden md:flex items-center gap-2 text-sm font-semibold">
-                    <a href="{{ route('store.coins') }}" class="px-4 py-2 rounded-xl text-white/85 hover:bg-white/10 hover:text-white transition">Coins</a>
-                    <a href="{{ route('store.bundles') }}" class="px-4 py-2 rounded-xl text-white/85 hover:bg-white/10 hover:text-white transition">Bundles</a>
-                    <a href="{{ route('store.ranks') }}" class="px-4 py-2 rounded-xl text-white/85 hover:bg-white/10 hover:text-white transition">Ranks</a>
-                    <a href="{{ route('store.keys') }}" class="px-4 py-2 rounded-xl text-white/85 hover:bg-white/10 hover:text-white transition">Crate Keys</a>
+                <div class="hidden lg:flex items-center gap-2">
+                    <a href="{{ route('store.coins') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Coins</a>
+                    <a href="{{ route('store.bundles') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Bundles</a>
+                    <a href="{{ route('store.ranks') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Ranks</a>
+                    <a href="{{ route('store.keys') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Keys</a>
                 </div>
             </div>
 
-            <div class="hidden md:flex items-center gap-3">
+            <div class="hidden lg:flex items-center gap-3">
                 <button
                     type="button"
                     @click="$dispatch('open-cart')"
-                    class="relative px-4 py-2 rounded-2xl bg-white/10 border border-white/10 text-white hover:bg-white/15 transition font-semibold text-sm"
+                    class="mc-btn mc-btn-primary relative text-sm py-2 px-4"
                 >
                     Cart
                     @if(($cartDrawerCount ?? 0) > 0)
-                        <span class="absolute -top-2 -right-2 h-6 min-w-6 px-1 rounded-full bg-emerald-500 text-white text-xs flex items-center justify-center">
+                        <span class="absolute -top-2 -right-2 h-6 min-w-6 px-1 rounded-full bg-red-500 text-white text-xs flex items-center justify-center border-2 border-black">
                             {{ $cartDrawerCount }}
                         </span>
                     @endif
                 </button>
 
                 @auth
-                    <a href="{{ route('orders.index') }}"
-                       class="px-4 py-2 rounded-2xl bg-white/10 border border-white/10 text-white hover:bg-white/15 transition font-semibold text-sm">
+                    <a href="{{ route('orders.index') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">
                         My Orders
                     </a>
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/10 border border-white/10 text-white hover:bg-white/15 transition font-semibold text-sm">
-                                <span>{{ Auth::user()->name }}</span>
+                            <button class="mc-btn mc-btn-secondary text-sm py-2 px-4 inline-flex items-center gap-2">
+                                <span class="truncate max-w-[140px]">{{ Auth::user()->name }}</span>
                                 <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                                 </svg>
@@ -62,23 +61,17 @@
                         </x-slot>
                     </x-dropdown>
                 @else
-                    <a href="{{ route('login') }}"
-                       class="px-5 py-3 rounded-xl thmc-btn-primary thmc-btn-blocky font-semibold text-sm transition">
-                        Log in
-                    </a>
+                    <a href="{{ route('login') }}" class="mc-btn mc-btn-primary text-sm py-2 px-4">Log in</a>
 
                     @if(Route::has('register'))
-                        <a href="{{ route('register') }}"
-                           class="px-4 py-2 rounded-2xl bg-white/10 border border-white/10 text-white hover:bg-white/15 transition font-semibold text-sm">
-                            Register
-                        </a>
+                        <a href="{{ route('register') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Register</a>
                     @endif
                 @endauth
             </div>
 
-            <div class="flex items-center md:hidden">
-                <button @click="open = ! open" class="p-2 rounded-xl text-white hover:bg-white/10">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <div class="flex items-center lg:hidden">
+                <button @click="open = ! open" class="mc-btn mc-btn-secondary py-2 px-3">
+                    <svg class="h-5 w-5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -87,19 +80,21 @@
         </div>
     </div>
 
-    <div x-show="open" class="md:hidden border-t border-white/10 bg-[#1f1b1b]/95">
-        <div class="px-4 py-3 space-y-2 text-sm font-semibold">
-            <a href="{{ route('store.coins') }}" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Coins</a>
-            <a href="{{ route('store.bundles') }}" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Bundles</a>
-            <a href="{{ route('store.ranks') }}" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Ranks</a>
-            <a href="{{ route('store.keys') }}" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Crate Keys</a>
+    <div x-show="open" class="lg:hidden mc-panel border-x-0 border-b-0 rounded-none">
+        <div class="max-w-7xl mx-auto px-4 py-4 space-y-3">
+            <div class="grid grid-cols-2 gap-2">
+                <a href="{{ route('store.coins') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Coins</a>
+                <a href="{{ route('store.bundles') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Bundles</a>
+                <a href="{{ route('store.ranks') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Ranks</a>
+                <a href="{{ route('store.keys') }}" class="mc-btn mc-btn-secondary text-sm py-2 px-4">Keys</a>
+            </div>
 
-            <button type="button" @click="$dispatch('open-cart'); open = false" class="w-full text-left block px-3 py-2 rounded-xl text-white hover:bg-white/10">
+            <button type="button" @click="$dispatch('open-cart'); open = false" class="mc-btn mc-btn-primary w-full">
                 Cart
             </button>
 
             @auth
-                <a href="{{ route('orders.index') }}" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">My Orders</a>
+                <a href="{{ route('orders.index') }}" class="mc-btn mc-btn-secondary w-full">My Orders</a>
             @endauth
         </div>
     </div>

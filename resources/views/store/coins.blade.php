@@ -1,36 +1,32 @@
 <x-app-layout>
     <x-slot name="header">
-        <section class="thmc-category-hero thmc-category-coins rounded-[2rem] p-6 sm:p-8">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                <div class="flex items-start gap-4">
-                    <img src="{{ asset('images/items/emerald.png') }}" class="w-14 h-14 pixelated" alt="Coins">
-
-                    <div>
-                        <div class="thmc-mc-title text-[10px] sm:text-xs thmc-category-accent-coins">
-                            COINS SHOP
-                        </div>
-                        <h1 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900">Server Coins</h1>
-                        <p class="mt-2 text-slate-700 max-w-2xl">
-                            Stock up on coins and spend them on upgrades, rewards and exclusive content across THMC.
-                        </p>
-
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span class="thmc-category-chip">Fast delivery</span>
-                            <span class="thmc-category-chip">Best value packs</span>
-                            <span class="thmc-category-chip">Great for upgrades</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="thmc-panel rounded-[1.5rem] p-5 min-w-[260px]">
-                    <div class="text-xs text-slate-500">Popular pack</div>
-                    <div class="mt-1 text-2xl font-extrabold thmc-category-accent-coins">10,000 Coins</div>
-                    <div class="mt-2 text-sm text-slate-600">Perfect for players who want a strong start.</div>
+        <div class="flex flex-col gap-4">
+            <div class="flex items-start gap-4">
+                <img src="{{ asset('images/items/emerald.png') }}" class="h-14 w-14 pixelated" alt="Coins">
+                <div>
+                    <div class="mc-title-small text-white/70">COINS SHOP</div>
+                    <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">Server Coins</h1>
+                    <p class="mt-3 text-white/80 max-w-2xl leading-6">
+                        Stock up on coins and spend them on upgrades, rewards and exclusive content across THMC.
+                    </p>
                 </div>
             </div>
 
-            <div class="mt-6 thmc-section-divider thmc-divider-coins"></div>
-        </section>
+            <!-- Urgency Banner -->
+            <div class="mc-menu-card border-t-4 border-t-yellow-400 mc-floating" style="animation-delay: 0s">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="font-bold text-yellow-300">⚡ LIMITED TIME OFFER</div>
+                        <div class="text-sm text-white/80 mt-1">Get 15% bonus coins on all purchases this week!</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-extrabold text-yellow-300">4 DAYS LEFT</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mc-divider"></div>
+        </div>
     </x-slot>
 
     @include('store._product_list', ['products' => $products])
