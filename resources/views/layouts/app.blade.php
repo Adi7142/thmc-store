@@ -15,31 +15,31 @@
     x-data="{ cartOpen: false }"
     @open-cart.window="cartOpen = true"
     @keydown.escape.window="cartOpen = false"
-    class="antialiased text-slate-900 min-h-screen thmc-world-bg"
+    class="antialiased min-h-screen thmc-world-bg mc-ui"
 >
-<div class="min-h-screen">
+<div class="min-h-screen flex flex-col mc-main-shell">
     @include('layouts.navigation')
 
     @isset($header)
-        <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-            <div class="thmc-surface rounded-3xl px-6 py-5">
+        <header class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8">
+            <div class="mc-header">
                 {{ $header }}
             </div>
         </header>
     @endisset
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-1">
         {{ $slot }}
     </main>
 
     @include('store.partials.cart-drawer')
 
-    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 pt-4">
-        <div class="thmc-surface rounded-3xl px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm">
-            <div class="text-slate-600">© {{ date('Y') }} THMC — All rights reserved.</div>
-            <div class="flex items-center gap-2 text-slate-600">
+    <footer class="mc-footer mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-sm flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div class="mc-text-muted">© {{ date('Y') }} THMC — All rights reserved.</div>
+            <div class="mc-text-muted flex items-center gap-2">
                 <span>Server IP:</span>
-                <span class="font-semibold text-slate-900">play.yourserver.com</span>
+                <span class="font-semibold text-white">play.yourserver.com</span>
             </div>
         </div>
     </footer>

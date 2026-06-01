@@ -13,20 +13,20 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased text-slate-900 min-h-screen thmc-world-bg">
+<body class="antialiased min-h-screen thmc-world-bg mc-ui">
 <div class="min-h-screen flex flex-col justify-center items-center px-4 py-8">
     <div class="w-full max-w-md">
         <div class="text-center mb-6">
             <a href="{{ route('store.index') }}" class="inline-flex flex-col items-center gap-3">
                 <img src="{{ asset('images/thmc-logo-128.webp') }}" class="h-16 w-16 rounded-2xl shadow-sm" alt="THMC">
                 <div>
-                    <div class="font-extrabold text-slate-900 text-xl">THMC</div>
-                    <div class="text-sm text-slate-600">Minecraft Store</div>
+                    <div class="font-extrabold text-white text-xl">THMC</div>
+                    <div class="text-sm text-white/72">Minecraft Store</div>
                 </div>
             </a>
         </div>
 
-        <div class="thmc-surface rounded-[2rem] px-6 py-6">
+        <div class="mc-section px-6 py-6">
             {{ $slot }}
         </div>
     </div>

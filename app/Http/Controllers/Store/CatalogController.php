@@ -18,7 +18,14 @@ class CatalogController extends Controller
             ->take(8)
             ->get();
 
-        return view('store.index', compact('latestOrders'));
+        // Get all active products with variants for the homepage
+        $products = StoreProduct::query()
+            ->where('is_active', true)
+            ->with(['variants' => fn($v) => $v->where('is_active', true)->orderBy('price_cents')])
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('store.index', compact('latestOrders', 'products'));
     }
 
     private function listByType(string $type)
